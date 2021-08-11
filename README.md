@@ -8,13 +8,6 @@ Steps to run :
 
 ```cs
 
-using var request = new HttpRequestMessage()
-{
-    Content = encodedContent,
-    Method = HttpMethod.Post,
-    RequestUri = new Uri(Environment.GetEnvironmentVariable("RequestUri")),
-};
-
 //client id for get access token
 string clientId = Environment.GetEnvironmentVariable("ClientID");
 
