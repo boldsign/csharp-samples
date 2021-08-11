@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="shortcut icon"
+          type="image/icon"
+          href="@Url.Content("~/favicon.ico")">
+    <link rel="canonical" href="@("//" + Context.Request.Host.Value + Context.Request.GetEncodedPathAndQuery())" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.min.css")" />
+    <link href="@Url.Content("~/css/boldsign-demo.css")" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header class="container-fluid custom-fluid">
+            <nav class="navbar navbar-expand-lg header-nav-bar">
+                <a class="text-decoration-none bs_head fw-400" href="/">
+                    <img src="@Url.Content("~/images/api-demo.svg")" />
+                </a>
+                <button class="navbar-toggler free-trial-btn menu-bar-btn" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse nav-bar-collapse-margin" id="navbarColor01" style="">
+                    <ul class="navbar-nav" style="margin-left: auto;">
+                        <li class="nav-item">
+                            <a class="header-nav-bar-link nav-link text-decoration-none bs_head bs_font_family fs-16 lh_20 bs_color_000000 fw-500 mr_12" href="https://boldsign.com/help/api/">Documentation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="header-nav-bar-link nav-link text-decoration-none bs_head bs_font_family fs-16 lh_20 bs_color_000000 fw-500 mr_12" href="https://api.boldsign.com/swagger/index.html">Rest API reference</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="header-nav-bar-link nav-link text-decoration-none bs_head bs_font_family fs-16 lh_20 bs_color_000000 fw-500 mr_12" href="https://www.boldsign.com/help/class-reference/BoldSign.Api.html">C# class reference</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="header-nav-bar-link nav-link text-decoration-none bs_head bs_font_family fs-16 lh_20 bs_color_000000 fw-500 mr_12 bs_display_inline_block" href="https://boldsign.com/help/api/">GitHub project</a>
+                        </li>
+                        <a href="https://account.boldsign.com/signup?planId=81" class="btn btn-outline-info my-2 my-sm-0 custom-trial free-trial-btn-ml" type="submit">Free trial</a>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div>
+            <main role="main">
+                <div class="global-spinner-loading position-fixed bs_display_none">
+                    <div class="global-spinner-container">
+                        <img src="@Url.Content("~/images/loader-transparent.svg")" alt="loading" width="48" height="48" />
+                    </div>
+                </div>
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BoldSign.Demos.Models.SamplesList>
+@{
+}
+<div class="d-flex flex-wrap">
+    @foreach (var sample in Model)
+    {
+        <div onclick="location.href='@(Url.Page("/"+@sample.ControllerName+"/" + @sample.ViewPageName, "", new { }))'" class="card mr_16 mb_44 w_348 card_padding cursor-pointer card-min-height">
+            <div class="card-body p-0 flex-0">
+                <h6 class="my-0 fw-600 bs_font_family font_style_normal lh_25 fs_20">@sample.Name</h6>
+            </div>
+            <div class="card-body d-flex flex-column p-0 mt_24 card-h6-header">
+                <h6 class="card-title font-weight-normal fs-14 bs_font_family font_style_normal lh_130">
+                    @sample.CardDescription
+                </h6>
+            </div>
+            <a href="@(Url.Page("/"+@sample.ControllerName+"/" + @sample.ViewPageName, "", new { }))" class="text-decoration-none text-center fs-14 bs_color_0565FF" role="button" aria-pressed="true">View Demo <img src="@Url.Content("~/images/arrow.svg")" /></a>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+
+

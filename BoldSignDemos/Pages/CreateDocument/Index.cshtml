@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    var formData = Model.BoldSignDemoViewModel.CreateDocument;
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var createDocument = sampleList.Where(x => x.Id == 1 && x.IsDisplayCard).FirstOrDefault();
+    ViewBag.Title = createDocument.Name + " - BoldSign API Demo";
+}
+<div class="bs_font_family create-doc-api">
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="fw-500 text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal pr_12" href="/">API Demos </a></span><span class="bs_color_141D30 fs-14"> > </span><span class="fs-16 lh_20 bs_color_666E80 pl_12">Create Document </span>
+    </div>
+    <h1 class="pb_16 fs_24 lh_30 bs_font_family bs_color_141D30">@createDocument.Name</h1>
+    <p class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900">@Html.Raw(createDocument.Description)</p>
+    <div class="lh_19 fw-500 pb_32 fs-16 bs_color_141D30">Fill the details to send for signing!</div>
+    <form method="post" asp-page-handler="send" asp-page="/createdocument/send">
+        <div class="mb_20">
+            <label for="Name" class="bs_color_333333 fs-16 lh_19 fw-500">Name</label>
+            <input name="Name" id="signerName" asp-for="@formData.Name" placeholder="Enter the signer name"
+                   class="form-control bs_text_box w_500 h_40" required />
+        </div>
+        <div class="mb_20">
+            <label for="Email" class="bs_color_333333 fs-16 lh_19 fw-500">Email ID</label>
+            <input name="Email" id="signerEmail" asp-for="@formData.Email" placeholder="Enter the signer email ID"
+                   class="form-control bs_text_box w_500 h_40" required />
+
+        </div>
+        <div class="mb_44">
+            <label for="Address" class="bs_color_333333 fs-16 lh_19 fw-500">Postal Address</label>
+            <input name="Address" id="signerAddress" asp-for="@formData.Address" placeholder="Enter the signer address"
+                   class="form-control bs_text_box w_500 h_40" required />
+        </div>
+        <div class="text-center w_500">
+            <input class="btn btn-primary btn_bg w_500 h_40 bs_color_FFFFFF fs-16 lh_20 w_fill" type="submit"
+                   value="Send Document for Signing" />
+        </div>
+    </form>
+</div>
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32 pl_20 fw-500">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="@sampleList.Where(x => x.Id != 1 && x.IsDisplayCard)" />
