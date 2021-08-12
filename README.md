@@ -1,10 +1,20 @@
-The repository will contain Bold Sign API demos samples.
+The repository includes code examples for the BoldSign Api's [SendDocument](https://www.boldsign.com/help/api/document/send-document-for-sign/#send-document), [GetProperties](https://www.boldsign.com/help/api/document/get-document-properties/), [ListDocuments](https://www.boldsign.com/help/api/document/list-documents/), [GetEmbeddedSignLink](https://www.boldsign.com/help/api/document/get-embed-signing-link-for-a-signer/) and [SendForSignFromTemplate](https://www.boldsign.com/help/api/template/send-document-to-sign-using-template/)
+
+Introduction
+
+The BoldSign API allows you to send documents to collect e-signatures from within your app. BoldSign has a necessary set of APIs that give you complete control over documents and properties.
+
+Prerequisites
+
+1. To work with BoldSign API, you need an enterprise or trial plan.
+https://www.boldsign.com/pricing/
+
+2. You should be an account admin to create a developer and configuring webhooks.
 
 Steps to run :
-1. [Prerequisites](https://www.boldsign.com/help/api/general/preparing-your-application/#prerequisites)
 
-2. We need to create ClientID and ClientSecret in our BoldSign application, explained in this [link](https://www.boldsign.com/help/api/general/preparing-your-application/#acquire-app-credentials),
-3. Add ClientID & ClientSecret in your system enviornemnt variables,
+1. We need to create ClientID and ClientSecret in our BoldSign application, explained in this [link](https://www.boldsign.com/help/api/general/preparing-your-application/#acquire-app-credentials),
+2. Add ClientID & ClientSecret in your system enviornemnt variables,
 
 ```cs
 
