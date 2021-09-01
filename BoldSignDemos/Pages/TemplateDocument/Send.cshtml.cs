@@ -64,7 +64,7 @@ namespace BoldSign.Demos.Pages.TemplateDocument
             }
             BoldSignDemoViewModel = new BoldSignDemoViewModel()
             {
-                TemplateDetails = new TemplateDetails() { DocumentId = documentCreated.DocumentId },
+                TemplateDetails = new TemplateDetails() { DocumentId = documentCreated.DocumentId, Email = templateDetails.Email },
                 SamplesLists = SamplesList.GetAllSamplesList()
             };
             return Page();
