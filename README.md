@@ -41,5 +41,7 @@ string clientSecret = Environment.GetEnvironmentVariable("ClientSecret");
     a.	For the Template document sample, create a template with Name and Email form fields, and change name of the fields in respective field settings to SignerName and SignerEmail.
 
     b.	For Embedded Sign sample, create a template with Name, Address, State, PostalCode form fields and change name of the fields in respective field settings to SignerName, SignerAddress, SignerState, SignerPostalCode.
+
+    ![template](template.png)
  
 Please refer to this [link](https://www.boldsign.com/help/api/template/send-document-to-sign-using-template/#send-document-from-template-by-filling-existing-fields) for adding form fields with names.
