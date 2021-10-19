@@ -494,6 +494,27 @@ tr.row_selected {
     font-family: 'Roboto', sans-serif;
 }
 
+.bs_text-success {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1AAA55;
+    display: flex;
+}
+
+.bs_text-success-img {
+    height: 22px;
+    width: 22px;
+    color: #1AAA55;
+    margin-right: 13px;
+}
+
+.ml_36 {
+    margin-left: 36px;
+}
+
 .bs_ff_normal {
     font-style: normal;
     font-weight: normal;

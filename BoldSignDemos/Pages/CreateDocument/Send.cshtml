@@ -7,16 +7,10 @@
 }
 <div class="bs_font_family">
     <div class="pb_32 bs_crump pt_116">
-    <span><a class="text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal" href="/">API Demos </a></span><span class="bs_color_141D30"> > </span><span class="fs-16 lh_20 bs_color_666E80">Create Document </span>
-</div>
-<h1 class="fw-500 bs_sample_head pb_16 fs_24 lh_30 bs_font_family bs_color_141D30">@createDocument.Name</h1>
-<p class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900">@Html.Raw(createDocument.Description)</p>
-<div class="lh_19 pb_32 fs-16 bs_color_141D30">Document sent to @Model.BoldSignDemoViewModel.DocumentDetails.Name (@Model.BoldSignDemoViewModel.DocumentDetails.Email) for signing.</div>
-<div class="lh_19 pb_32 fs-16 bs_color_141D30">
-    <span>DocumentId : </span>
-    <span>@Model.BoldSignDemoViewModel.DocumentDetails.DocumentId</span>
-</div>
+        <span><a class="text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal" href="/">API Demos </a></span><span class="bs_color_141D30"> > </span><span class="fs-16 lh_20 bs_color_666E80">Create Document </span>
     </div>
+    <div class="lh_19 pb_16 fs-16 bs_color_141D30 bs_text-success max_w_900"> <img class="bs_text-success-img" src="@Url.Content("~/images/check-circle.svg")" />A signature request was successfully sent to @Model.BoldSignDemoViewModel.DocumentDetails.Email pre-filled with the information that you had provided. A document(@Model.BoldSignDemoViewModel.DocumentDetails.DocumentId) sent to  for signing with the given name prefilled.</div>
+</div>
 <div class="bs-vs-seprator border-none mb_32"></div>
 <div class="bs_color_141D30 fs_24 lh_30 pb_32">Other Demos</div>
 <partial name="~/Pages/Partial/ListCards.cshtml" model="Model.BoldSignDemoViewModel.SamplesLists.Where(x => x.Id != 1 && x.IsDisplayCard)" />

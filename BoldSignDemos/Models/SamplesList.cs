@@ -35,7 +35,7 @@ namespace BoldSign.Demos.Models
                 Id = 1,
                 Name = "Send document for signing",
                 CardDescription = "Send e-signature document request to one or more recipients with signing workflow, auto-reminders, expiry date, and more.",
-                Description = "Fill in a name and postal address in the below form to create an e-signature document with those prefilled values and send an e-signature request. You can use the trash-mail service to view your e-signature request and evaluate our signing experience.",
+                Description = "Fill in a name and postal address in the below form to create an e-signature document with those prefilled values and send an e-signature request.",
                 IconCss = "",
                 ControllerName = "CreateDocument",
                 ViewPageName = "Index",
@@ -81,7 +81,7 @@ namespace BoldSign.Demos.Models
             samplesLists.Add(new SamplesList
             {
                 Id = 5,
-                Name = "Embed signing process without iFrame",
+                Name = "Redirect to signing page from your app",
                 Description = "BoldSign embedded signing feature allows your users to complete the signing process with a seamless redirect to signer page then back to your app without an iFrame. <br/> Try filling the below form details, send the document, and sign the document. This will help you to understand the complete signing process.",
                 CardDescription = "Collect e-signatures by redirect your users directly to their signing page without sending an email.",
                 IconCss = "",
