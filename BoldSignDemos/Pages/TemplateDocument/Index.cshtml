@@ -1,0 +1,43 @@
+﻿@page
+@model BoldSign.Demos.Pages.TemplateDocument.IndexModel
+@{
+    var formData = Model.BoldSignDemoViewModel.TemplateDetails;
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var templateSampleDetail = sampleList.Where(x => x.Id == 3).FirstOrDefault();
+    ViewBag.Title = templateSampleDetail.Name + " - BoldSign API Demo";
+}
+<div class="bs_font_family create-doc-api">
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal pr_12" href="/">API Demos </a></span><span class="bs_color_141D30 fs-14"> > </span><span class="fs-16 lh_20 bs_color_666E80 pl_12">Template Document </span>
+    </div>
+    <h1 class="fw-500 pb_16 fs_24 lh_30 bs_font_family bs_color_141D30">@templateSampleDetail.Name</h1>
+    <div class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900">@Html.Raw(templateSampleDetail.Description)</div>
+    <div class="lh_19 fw-500 pb_32 fs-16 bs_color_141D30">Click the button to send for signing using template!</div>
+    <form method="post" asp-page-handler="Send" asp-page="/TemplateDocument/Send">
+        <div class="mb_20">
+            <label for="TemplateId" class="bs_color_333333 fs-16 lh_19 fw-500">Template ID</label>
+            <input name="TemplateId" id="templateId" asp-for="@formData.TemplateId" placeholder="Enter the templateId"
+                   class="form-control bs_text_box w_500 h_40" required />
+            <div class="fs-12 text-md-right w_500 p-1">ID of a template created in <a class="text-decoration-none" href="https://app.boldsign.com">BoldSign Web App</a></div>
+        </div>
+        <div class="mb_20">
+            <label for="Name" class="bs_color_333333 fs-16 lh_19 fw-500">Name</label>
+            <input name="Name" id="signerName" asp-for="@formData.Name" placeholder="Enter the signer name"
+                   class="form-control bs_text_box w_500 h_40" required />
+        </div>
+        <div class="mb_20">
+            <label for="Email" class="bs_color_333333 fs-16 lh_19 fw-500">Email ID</label>
+            <input name="Email" id="signerEmail" asp-for="@formData.Email" placeholder="Enter the signer email ID"
+                   class="form-control bs_text_box w_500 h_40" required />
+
+        </div>
+        <div class="text-center w_500">
+            <input class="btn btn-primary btn_bg w_500 h_40 bs_color_FFFFFF fs-16 lh_20 w_fill" type="submit"
+                   value="Send Document for Signing" />
+        </div>
+    </form>
+</div>
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32 pl_20 fw-500">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="@sampleList.Where(x => x.Id != 3 && x.IsDisplayCard)" />
+

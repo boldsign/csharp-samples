@@ -1,0 +1,114 @@
+﻿@page
+@using BoldSign.Model
+@model BoldSign.Demos.Pages.ListDocument.IndexModel
+@{
+    var listDocuments = Model.BoldSignDemoViewModel.DocumentRecords.Result;
+    var pageDetails = Model.BoldSignDemoViewModel.DocumentRecords.PageDetails;
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var listDocument = sampleList.Where(x => x.Id == 2 && x.IsDisplayCard).FirstOrDefault();
+    ViewBag.Title = listDocument.Name + " - BoldSign API Demo"; ;
+}
+<div class="bs_font_family create-doc-api">
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal pr_12" href="/">API Demos</a></span><span class="bs_color_141D30 fs-14"> > </span><span class="fs-16 bs_color_666E80 pl_12">List Document </span>
+    </div>
+    <h1 class="pb_16 fs_24 lh_30 bs_font_family bs_color_141D30 fw-500 fs_24">@listDocument.Name</h1>
+    <div class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900">@Html.Raw(listDocument.Description)</div>
+    <form class="pt-2" method="get" asp-page="/ListDocument/Index">
+        <div class="mb_20 filter-options">
+            <div class="margin_right_16 pt_5 fw-700 filter-options-label">FILTER OPTIONS :</div>
+            <input class="form-control bs_text_box w_252 h_32 mb_16 fs-14 margin_right_16 search-bar" type="search" placeholder="Search Keywords" id="SearchTerm" name="SearchTerm" asp-for="SearchTerm" />
+            <select data-placeholder="Select Status" class="mdb-select md-form mb_16 margin_right_16 status-select-dropdown-mob" multiple searchable="Search here.." asp-for="Status" asp-items='Html.GetEnumSelectList<DocumentStatus>().Where(x=>x.Text != "Draft").ToList().Select(c => { c.Text = c.Text == "InProgress" ? "In Progress": c.Text; return c; });'>
+            </select>
+            <div class="text-center margin_right_16 ml_24 apply-filter-btn">
+                <input asp-page-handler="/" asp-page="/ListDocument/Index" class="btn text-center btn-primary btn_bg w_252 h_40 fs-16 lh_25 fw-500 ls-32 apply-filter-btn" type="submit"
+                       value="Apply Filter" />
+            </div>
+            <div onclick="location.href='@(Url.Page("/ListDocument/Index", "", new { }))'" class="pt_5 text-center bs_color_0565FF bs_ff_normal bs_font_family fs-14 lh_20 fw-500 cursor-pointer ls-32 clear-filter">Clear filter</div>
+        </div>
+        <div class="d-flex">
+            <div class="f_auto">
+                <table id="list_document" class="table">
+                    <thead>
+                        <tr>
+
+                            <th class="th_head_bg list-doc-header" scope="col">Document ID</th>
+                            <th class="th_head_bg list-doc-header" scope="col">Message Title</th>
+                            <th class="th_head_bg list-doc-header" scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (listDocuments.Count == 0)
+                        {
+                            <tr>
+                                <td class="text-center font-weight-bold"> No Records Found  </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var document in listDocuments)
+                            {
+                                <tr class="cursor-pointer tr_bg" data-toggle="modal" data-id="@document.DocumentId" data-target="#details-modal">
+                                    <td> @document.DocumentId</td>
+                                    <td> @document.MessageTitle</td>
+                                    <td> @(document.Status == DocumentStatus.InProgress ? "In Progress" : document.Status.ToString())</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="d-flex align-items-center justify-content-end">
+                    <div class="input-group justify-content-end go-to-page-btn">
+                        <input id="pageNumber" name="pageNumber" value="@pageDetails.Page" asp-for="pageNumber" min="1" max="@pageDetails.TotalPages" type="number" class="form-control" placeholder="Page Number" aria-label="Page Number" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button asp-page-handler="/" asp-page="/ListDocument/Index" class="btn btn_bg bs_color_FFFFFF btn-outline-secondary" type="submit">Go-to Page</button>
+                        </div>
+                    </div>
+                    <div class="pl_20 fs-14">@pageDetails.Page-@pageDetails.TotalPages of @pageDetails.TotalRecordsCount</div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal fade" tabindex="-1" role="dialog" id="details-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Document Properties</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32 pl_20 fw-500">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="@sampleList.Where(x => x.Id != 2 && x.IsDisplayCard)" />
+<script>
+    $(document).ready(function () {
+        $('.mdb-select').multiselect({
+            includeSelectAllOption: true,
+            numberDisplayed: 1,
+            selectAllText: "All"
+        });
+    });
+
+    $('[data-toggle=modal]').on('click', function (e) {
+        document.getElementsByClassName('global-spinner-loading')[0].classList.remove('bs_display_none');
+        document.getElementsByClassName('global-spinner-loading')[0].classList.add('bs_display_block');
+        var $target = $($(this).data('target'));
+        fetch('?handler=Properties&documentId=' + e.currentTarget.dataset["id"].trim())
+            .then((response) => {
+                return response.text();
+            })
+            .then((result) => {
+                document.getElementsByClassName('modal-body')[0].innerHTML = result;
+                document.getElementsByClassName('global-spinner-loading')[0].classList.add('bs_display_none');
+                document.getElementsByClassName('global-spinner-loading')[0].classList.remove('bs_display_block');
+                $target.modal('show');
+            });
+        return false;
+    });
+</script>

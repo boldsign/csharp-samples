@@ -1,0 +1,91 @@
+﻿@model BoldSign.Demos.ViewModel.BoldSignDemoViewModel
+@{
+    var x = @Model;
+    var logProperties = Model.DocumentProperties.DocumentHistory;
+    var signerProperties = Model.DocumentProperties.SignerDetails;
+    var documentProperties = Model.DocumentProperties;
+    var sampleList = Model.SamplesLists;
+    var docPropDetails = sampleList.Where(x => x.Id == 6).FirstOrDefault();
+    ViewBag.Title = docPropDetails.Title;
+}
+<div class="bs_font_family">
+    <p class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900">@docPropDetails.Description</p>
+    <div>
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Document ID: </div>
+            <div class="col-md-9 fs-14 overview_right">@documentProperties.DocumentId</div>
+        </div>
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Message title: </div>
+            <div class="col-md-9 fs-14 overview_right">@documentProperties.MessageTitle</div>
+        </div>
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Status:</div>
+            <div class="col-md-9 fs-14 overview_right">@(documentProperties.Status == BoldSign.Model.DocumentStatus.InProgress ? "In Progress" : documentProperties.Status.ToString())</div>
+        </div>
+        @{ if (!string.IsNullOrEmpty(documentProperties.RevokeMessage))
+            {
+                <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+                    <div class="col-md-3 fs-14  overview_left  text-right pl-0">Revoke message: </div>
+                    <div class="col-md-9 fs-14 overview_right">@documentProperties.RevokeMessage</div>
+                </div>
+            }
+        }
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Signing order: </div>
+            <div class="col-md-9 fs-14 overview_right">@documentProperties.EnableSigningOrder</div>
+        </div>
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Expiry date: </div>
+            <div class="col-md-9 fs-14 overview_right">@(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds((double)documentProperties.ExpiryDate))</div>
+        </div>
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Created On: </div>
+            <div class="col-md-9 fs-14 overview_right">@(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds((double)documentProperties.CreatedDate))</div>
+        </div>
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Description: </div>
+            <div class="col-md-9 fs-14 overview_right">@documentProperties.DocumentDescription</div>
+        </div>
+        @{ if (!string.IsNullOrEmpty(documentProperties.DeclineMessage))
+            {
+                <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+                    <div class="col-md-3 fs-14  overview_left  text-right pl-0">Decline message: </div>
+                    <div class="col-md-9 fs-14 overview_right">@documentProperties.DeclineMessage</div>
+                </div>
+            } }
+        <div class="d-flex pb-3 ml-3 font-weight-normal align-items-center">
+            <div class="col-md-3 fs-14  overview_left  text-right pl-0">Brand ID: </div>
+            <div class="col-md-9 fs-14 overview_right">@documentProperties.BrandId</div>
+        </div>
+        <div class="bs-vs-seprator border-none mb_32"></div>
+        <div class="tab-content">
+            <div class="pb_32 fw-500">
+                Recipient Details
+            </div>
+            <div>
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="th_head_bg" scope="col">Signer Name</th>
+                                <th class="th_head_bg" scope="col">Signer Email</th>
+                                <th class="th_head_bg" scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var document in signerProperties)
+                            {
+                                <tr>
+                                    <td>@document.SignerName</td>
+                                    <td>@document.SignerEmail</td>
+                                    <td>@document.Status</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

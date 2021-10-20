@@ -1,0 +1,7 @@
+﻿@page 
+@model IndexModel
+@{
+    ViewData["Title"] = "BoldSign API demos and examples to track or send e-signatures";
+}
+<div class="pt_100 pb_56 mb-2 font-weight-bold fs_32 lh_39 bs_font_family bs_ff_normal fw-600 welcome-msg">Welcome to BoldSign API demos!</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="Model.SampleList.Where(x=>x.IsDisplayCard)" />

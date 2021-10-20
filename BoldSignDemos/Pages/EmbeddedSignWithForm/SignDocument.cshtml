@@ -1,0 +1,35 @@
+﻿@page
+@model BoldSign.Demos.Pages.EmbeddedSignWithForm.SignDocumentModel
+@{
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var templateDetails = Model.BoldSignDemoViewModel.TemplateDetails;
+    var embeddedSignFormSampleDetail = sampleList.Where(x => x.Id == 5).FirstOrDefault();
+    ViewBag.Title = embeddedSignFormSampleDetail.Name + " - BoldSign API Demo";
+}
+<script>
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+    // Listen to message from child window
+    eventer(messageEvent, function (e) {
+        console.log('parent received message!:  ', e.data);
+
+        if (e.data === "SignCompleted") {
+            window.location.href = "/embeddedsignwithform/signcompleted/";
+        }
+    }, false);
+</script>
+<div class="bs_font_family">
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal " href="/">API Demos </a></span><span class="bs_color_141D30"> > </span><span class="fs-16 lh_20 bs_color_666E80">Embedded Sign with Form </span>
+    </div>
+    <h1 class="fw-500 bs_sample_head pb_16 fs_24 lh_30 bs_font_family bs_color_141D30">@embeddedSignFormSampleDetail.Name</h1>
+    <div class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900">@Html.Raw(embeddedSignFormSampleDetail.Description)</div>
+    <div>
+        <iframe id="iframeID" src="@templateDetails.SignLink" height="1000" width="1100"></iframe>
+    </div>
+</div>
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="sampleList.Where(x => x.Id != 5 && x.IsDisplayCard)" />
