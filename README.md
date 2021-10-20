@@ -1,6 +1,12 @@
 # BoldSign API CSharp demo samples
 
-This repository includes code examples for the BoldSign Api's [SendDocument](https://www.boldsign.com/help/api/document/send-document-for-sign/#send-document), [GetProperties](https://www.boldsign.com/help/api/document/get-document-properties/), [ListDocuments](https://www.boldsign.com/help/api/document/list-documents/), [GetEmbeddedSignLink](https://www.boldsign.com/help/api/document/get-embed-signing-link-for-a-signer/) and [SendForSignFromTemplate](https://www.boldsign.com/help/api/template/send-document-to-sign-using-template/)
+This repository includes the below list of code examples using the BoldSign APIs:
+
+- [Send document for signing](/BoldSignDemos/Pages/CreateDocument/)
+- [List and get detailed information of the documents](/BoldSignDemos/Pages/ListDocument/)
+- [Send document from template](/BoldSignDemos/Pages/TemplateDocument/)
+- [Embed signing process within your app](/BoldSignDemos/Pages/EmbeddedSign/)
+- [Redirect to signing page from your app](/BoldSignDemos/Pages/EmbeddedSignWithForm/)
 
 ## Introduction
 
