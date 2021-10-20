@@ -12,14 +12,20 @@ dotnet add package BoldSign.Api
 The other ways of installing a package are available here:
 [Install and manage NuGet packages in Visual Studio](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio)
 
-### Prerequisites:
+### Compatibility
 
-1.	To work with BoldSign API, you need an enterprise or trial plan.
+1. .NET Core 2.0 or above.
+2. Microsoft .NET version 4.5.2+;
 
-    https://www.boldsign.com/pricing/
+### Prerequisites
+1.	Signup for [BoldSign trial](https://account.boldsign.com/signup?planId=101)
+2.	Install BoldSign API’s NuGet package with the following command.
+```csharp
+dotnet add package BoldSign.Api
+```
+3.	Acquire needed BoldSing app credentials from here. [Authentication - Help Center - BoldSign](https://www.boldsign.com/help/api/general/authentication/#basic-authentication)
+4.	Now you got all the prerequisites ready to start embedding BoldSign API.
 
-2.	Create an OAuth application to enable API access by following the steps outlined here 
-3.	Visual studio 2019 with ASP.NET package.
 
 ### Steps to run samples:
 
