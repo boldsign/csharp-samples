@@ -23,7 +23,7 @@ The other ways of installing a package are available here:
 ```csharp
 dotnet add package BoldSign.Api
 ```
-3.	Acquire needed BoldSing app credentials from here. [Authentication - Help Center - BoldSign](https://www.boldsign.com/help/api/general/authentication/#basic-authentication)
+3.	Acquire needed BoldSign app credentials from here. [Authentication - Help Center - BoldSign](https://www.boldsign.com/help/api/general/authentication/#basic-authentication)
 4.	Now you got all the prerequisites ready to start embedding BoldSign API.
 
 
