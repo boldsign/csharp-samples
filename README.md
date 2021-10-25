@@ -18,6 +18,7 @@ This repository includes the below list of code examples using the BoldSign APIs
 ## Prerequisites
 1.	Signup for [BoldSign trial](https://account.boldsign.com/signup?planId=101)
 2.	Install BoldSign API’s NuGet package with the following command.
+
 ```csharp
 dotnet add package BoldSign.Api
 ```
