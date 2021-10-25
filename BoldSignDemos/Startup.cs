@@ -1,5 +1,4 @@
 using BoldSign.Api;
-using BoldSign.Demos.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,10 +28,11 @@ namespace BoldSign.Demos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(new ApiClient());
+            var apiClient = new ApiClient();
+            apiClient.ApiKey = "***APIKey***";
+            services.AddSingleton(apiClient);
             services.AddSingleton(new DocumentClient());
             services.AddSingleton(new TemplateClient());
-            services.AddHttpClient<TokenService>();
             services.AddRazorPages();
         }
 
@@ -62,12 +62,6 @@ namespace BoldSign.Demos
             app.UseRouting();
 
             app.UseStaticFiles();
-            app.Use(async (context, next) =>
-            {
-                await context.RequestServices.GetRequiredService<TokenService>().SetTokenAsync().ConfigureAwait(false);
-
-                await next();
-            });
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
