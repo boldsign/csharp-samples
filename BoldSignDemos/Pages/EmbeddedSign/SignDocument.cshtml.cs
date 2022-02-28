@@ -46,22 +46,22 @@ namespace BoldSign.Demos.Pages.EmbeddedSign
                         {
                             new ExistingFormField()
                             {
-                                Index = 1,
+                                Id = "SignerName",
                                 Value = templateDocument.Name,
                             },
                             new ExistingFormField()
                             {
-                                Index = 2,
+                                Id = "SignerAddress",
                                 Value = templateDocument.Address,
                             },
                             new ExistingFormField()
                             {
-                                Index = 3,
+                                Id = "SignerState",
                                 Value = templateDocument.State,
                             },
                             new ExistingFormField()
                             {
-                                Index = 4,
+                                Id = "SignerPostalCode",
                                 Value = templateDocument.PostalCode,
                             },
                         }
@@ -73,7 +73,7 @@ namespace BoldSign.Demos.Pages.EmbeddedSign
             {
                 documentCreated = await this.templateClient.SendUsingTemplateAsync(sendForSignFromTemplate).ConfigureAwait(false);
             }
-            catch(ApiException ex)
+            catch (ApiException ex)
             {
                 throw new Exception(ex.Message);
             }

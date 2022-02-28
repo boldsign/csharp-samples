@@ -46,22 +46,22 @@ namespace BoldSign.Demos.Pages.EmbeddedSignWithForm
                         {
                             new ExistingFormField()
                             {
-                                Index = 1,
+                                Id = "SignerName",
                                 Value = templateDocument.Name,
                             },
                             new ExistingFormField()
                             {
-                                Index = 2,
+                                Id = "SignerAddress",
                                 Value = templateDocument.Address,
                             },
                             new ExistingFormField()
                             {
-                                Index = 3,
+                                Id = "SignerState",
                                 Value = templateDocument.State,
                             },
                             new ExistingFormField()
                             {
-                                Index = 4,
+                                Id = "SignerPostalCode",
                                 Value = templateDocument.PostalCode,
                             },
                         }

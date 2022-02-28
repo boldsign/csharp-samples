@@ -33,7 +33,7 @@ namespace BoldSign.Demos.Pages.CreateDocument
 
             //signature field
             formFields.Add(new FormField(
-                 name: "Sign",
+                 id: "Sign",
                  type: FieldType.Signature,
                  pageNumber: 1,
                  isRequired: true,
@@ -41,6 +41,7 @@ namespace BoldSign.Demos.Pages.CreateDocument
 
             //email field
             formFields.Add(new FormField(
+                id: "email_label",
                 type: FieldType.Label,
                 pageNumber: 1,
                 value: createDocument.Email,
@@ -49,6 +50,7 @@ namespace BoldSign.Demos.Pages.CreateDocument
 
             //name field
             formFields.Add(new FormField(
+                id: "name_label",
                 type: FieldType.Label,
                 pageNumber: 1,
                 value: createDocument.Name,
@@ -56,6 +58,7 @@ namespace BoldSign.Demos.Pages.CreateDocument
 
             //address field
             formFields.Add(new FormField(
+                id: "address_label",
                 type: FieldType.Label,
                 pageNumber: 1,
                 value: createDocument.Address,

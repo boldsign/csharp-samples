@@ -42,12 +42,12 @@ namespace BoldSign.Demos.Pages.TemplateDocument
                         {
                             new ExistingFormField()
                             {
-                                Name = "SignerName",
+                                Id = "SignerName",
                                 Value = templateDetails.Name,
                             },
                             new ExistingFormField()
                             {
-                                Name = "SignerEmail",
+                                Id = "SignerEmail",
                                 Value = templateDetails.Email,
                             }
                         }
