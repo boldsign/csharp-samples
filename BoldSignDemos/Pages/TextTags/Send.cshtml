@@ -1,0 +1,21 @@
+﻿@page
+@model BoldSign.Demos.Pages.TextTags.SendModel
+@{
+    var formData = Model.BoldSignDemoViewModel.DocumentDetails;
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var texttags = sampleList.Where(x => x.Id == 8 && x.IsDisplayCard).FirstOrDefault();
+    ViewBag.Title = texttags.Name + " - BoldSign API Demo";
+}
+<div>
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="fw-500 text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal pr_12" href="/">API Demos </a></span><span class="bs_color_141D30 fs-14"> > </span><span class="fs-16 lh_20 bs_color_666E80 pl_12">Text Tags </span>
+    </div>
+    <h2 class="pb_16 fs_24 lh_30 bs_font_family bs_color_141D30">@texttags.Name</h2>
+    <p class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900 ls-32">@Html.Raw(texttags.Description)</p>
+</div>
+
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32 pl_20 fw-500">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="@sampleList.Where(x => x.Id != 8 && x.IsDisplayCard)" />
+
+

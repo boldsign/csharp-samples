@@ -1,0 +1,36 @@
+﻿@page
+@model BoldSign.Demos.Pages.TextTags.CompletedModel
+@{
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var signpage = Model.BoldSignDemoViewModel.TemplateDetails;
+    var texttags = sampleList.Where(x => x.Id == 8 && x.IsDisplayCard).FirstOrDefault();
+    ViewBag.Title = texttags.Name + " - BoldSign API Demo";
+}
+<script>
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+    // Listen to message from child window
+    eventer(messageEvent, function (e) {
+        var data = JSON.parse(e.data);
+        console.log('parent received message!:  ', data["page"]);
+
+        if (data["page"] === "SignCompleted") {
+            window.location.href = `/texttags/signcompleted/?documentId=${data["documentId"]}`;
+        }
+    }, false);
+</script>
+<div class="bs_font_family">
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal" href="/">API Demos </a></span><span class="bs_color_141D30"> > </span><span class="fs-16 lh_20 bs_color_666E80">Text Tags </span>
+    </div>
+    <h2 class="pb_16 fs_24 lh_30 bs_font_family bs_color_141D30">@texttags.Name</h2>
+    <p class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900 ls-32">@Html.Raw(texttags.Description)</p>
+    <div>
+        <iframe id="iframeID" src="@signpage.SignLink" class="w_fill max_w_fill" height="1000"></iframe>
+    </div>
+</div>
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="Model.BoldSignDemoViewModel.SamplesLists.Where(x => x.Id != 8 && x.IsDisplayCard)" />

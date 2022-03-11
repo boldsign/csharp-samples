@@ -20,5 +20,7 @@ namespace BoldSign.Demos.ViewModel
         public TemplateDetails TemplateDetails { get; set; }
 
         public DocumentProperties DocumentProperties { get; set; }
+
+        public EmbeddedTemplate EmbeddedTemplate { get; set; }
     }
 }

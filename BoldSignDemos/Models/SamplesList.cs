@@ -102,6 +102,30 @@ namespace BoldSign.Demos.Models
                 IsDisplayCard = false,
                 CardButtonName = "Document Properties",
             });
+            samplesLists.Add(new SamplesList
+            {
+                Id = 7,
+                Name = "Embed send document within your app",
+                Description = "BoldSign embedded requesting feature allows you to send the document for signing process without leaving your application using iFrame. <br/> <br/> Try filling out the details below and sending the document. This will help you to understand the complete sending and signing process.",
+                CardDescription = "Send e-signature request within your app by embedded BoldSign sending page in it.",
+                IconCss = "",
+                ControllerName = "EmbeddedSample",
+                ViewPageName = "Index",
+                IsDisplayCard = true,
+                CardButtonName = "Embedded Request",
+            });
+            samplesLists.Add(new SamplesList
+            {
+                Id = 8,
+                Name = "Dynamic field positioning with text tags",
+                Description = "BoldSign text tags are used to place the form field in the document without using co-ordinates, this will be used in the scenario when form field’s location is not predictable, due to the document content nature.  <br/> <br/> <a style='font-style:italic'>Note: In this demo sample, we have used black color text for your visibility and to understand about text tags. But in real, it is advised to use the color that match background, usually it will be white-on-white.</a> <br/> <br/> <a class='text-decoration-none text-center fs-14 bs_color_0565FF' rel='nofollow' href='https://www.boldsign.com/help/api/text-tags/usage/#text-tag-syntax'>Documentation: Text tags syntax</a>",
+                CardDescription = "Send document for signature with text tags without locating the fields using co-ordinates.",
+                IconCss = "",
+                ControllerName = "TextTags",
+                ViewPageName = "Index",
+                IsDisplayCard = true,
+                CardButtonName = "Text Tags",
+            });
             return samplesLists;
         }
 

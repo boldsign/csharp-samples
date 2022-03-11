@@ -20,6 +20,8 @@
   <ItemGroup>
     <PackageReference Include="BoldSign.Api" Version="*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="19.4.0.54" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="19.4.0.54" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,12 @@
+﻿@page 
+@model BoldSign.Demos.Pages.TextTags.ResponseModel
+@{
+    var documentId = Request.Query["documentId"];
+}
+
+<h1>Please Wait!</h1>
+
+<script type="text/javascript">
+    var data = { page: "SignCompleted", documentId: "@documentId" };
+    parent.postMessage(JSON.stringify(data));
+</script>
