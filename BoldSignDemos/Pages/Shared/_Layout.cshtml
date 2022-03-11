@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.syncfusion.com/ej2/19.4.53/dist/ej2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/19.4.53/material.css" />
 </head>
 <body>
     <div class="main-container">
@@ -25,7 +27,7 @@
                     <img src="@Url.Content("~/images/api-demo.svg")" />
                 </a>
                 <button class="navbar-toggler free-trial-btn menu-bar-btn" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="navbar-collapse collapse nav-bar-collapse-margin" id="navbarColor01" style="">
@@ -64,5 +66,6 @@
     <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+    <ejs-scripts></ejs-scripts>
 </body>
 </html>

@@ -1,0 +1,17 @@
+﻿@page
+@model BoldSign.Demos.Pages.TextTags.SignCompletedModel
+@{
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var texttags = sampleList.Where(x => x.Id == 8).FirstOrDefault();
+    ViewBag.Title = texttags.Name + " - BoldSign API Demo";
+    var documentId = Request.Query["documentId"];
+}
+<div class="bs_font_family">
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal " href="/">API Demos </a></span><span class="bs_color_141D30"> > </span><span class="fs-16 lh_20 bs_color_666E80">Text Tags </span>
+    </div>
+    <div class="lh_19 fw-500 pb_32 fs-16 bs_color_141D30">Thank you for signing the document!</div>
+</div>
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="sampleList.Where(x => x.Id != 8 && x.IsDisplayCard)" />

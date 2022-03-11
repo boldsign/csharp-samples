@@ -14,6 +14,8 @@ This repository includes the below list of code examples using the BoldSign APIs
 - [Send document from template](/BoldSignDemos/Pages/TemplateDocument/)
 - [Embed signing process within your app](/BoldSignDemos/Pages/EmbeddedSign/)
 - [Redirect to signing page from your app](/BoldSignDemos/Pages/EmbeddedSignWithForm/)
+- [Embed send document within your app](/BoldSignDemos/Pages/EmbeddedSample/)
+- [Dynamic field positioning with text tags](/BoldSignDemos/Pages/TextTags/)
 
 ## Prerequisites
 1.	Signup for [BoldSign trial](https://account.boldsign.com/signup?planId=101)
@@ -30,7 +32,7 @@ dotnet add package BoldSign.Api
 
 1. Open the Startup.cs file, and add your API key acquired from the BoldSign Web App in the ApiClient, by replacing the "***APIKey***". 
 2. To run the [Send document from template](/BoldSignDemos/Pages/TemplateDocument/) sample, create a template from the web app with text field by naming SignerName, and SignerEmail. Add the copied template ID, in the sample template ID text box. 
-3. To run the [Embed signing process within your app](/BoldSignDemos/Pages/EmbeddedSign/), and [Redirect to signing page from your app](/BoldSignDemos/Pages/EmbeddedSignWithForm/) sample, create a template from the web app with text field by naming SignerName, SignerAddress, SignerState, SignerPostalCode. Copy the template ID from the web app once the template has been created. Add the copied template ID, in the sample template ID text box. 
+3. To run the [Embed signing process within your app](/BoldSignDemos/Pages/EmbeddedSign/), [Redirect to signing page from your app](/BoldSignDemos/Pages/EmbeddedSignWithForm/) and [Embed send document within your app](/BoldSignDemos/Pages/EmbeddedSample/) sample, create a template from the web app with text field by naming SignerName, SignerAddress, SignerState, SignerPostalCode. Copy the template ID from the web app once the template has been created. Add the copied template ID, in the sample template ID text box. 
 
 ## Useful Resources
 - [Send document from template by filling existing fields](https://www.boldsign.com/help/api/template/send-document-to-sign-using-template/#send-document-from-template-by-filling-existing-fields)

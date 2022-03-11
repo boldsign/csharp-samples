@@ -1,0 +1,76 @@
+﻿@page
+@model BoldSign.Demos.Pages.TextTags.IndexModel
+@{
+    var sampleList = Model.BoldSignDemoViewModel.SamplesLists;
+    var texttags = sampleList.Where(x => x.Id == 8 && x.IsDisplayCard).FirstOrDefault();
+    ViewBag.Title = texttags.Name + " - BoldSign API Demo";
+}
+<div class="bs_font_family create-doc-api">
+    <div class="pb_32 bs_crump pt_116">
+        <span><a class="fw-500 text-decoration-none bs_color_0565FF fs-16 lh_20 bs_ff_normal pr_12" href="/">API Demos </a></span><span class="bs_color_141D30 fs-14"> > </span><span class="fs-16 lh_20 bs_color_666E80 pl_12">Text Tags </span>
+    </div>
+    <h2 class="pb_16 fs_24 lh_30 bs_font_family bs_color_141D30">@texttags.Name</h2>
+    <p class="pb_45 fs-14 bs_color_666E80 mb-0 max_w_900 ls-32">@Html.Raw(texttags.Description)</p>
+    <form method="post" asp-page-handler="Completed" asp-page="/TextTags/Completed" enctype="multipart/form-data" id="form">
+        <div class="doc-container">
+            <ejs-documenteditorcontainer id="container" enableToolbar=false height="590px"></ejs-documenteditorcontainer>
+        </div>
+        <br>
+        <br>
+        <input type="file" id="fileInputElement" name="file" style="display: none">
+        <button id="submitBtn" data-toggle="modal" class="btn btn-primary btn_bg bs_color_FFFFFF fs-16 lh_20">Send</button>
+    </form>
+</div>
+<div class="bs-vs-seprator border-none mb_32"></div>
+<div class="bs_color_141D30 fs_24 lh_30 pb_32 pl_20 fw-500">Other Demos</div>
+<partial name="~/Pages/Partial/ListCards.cshtml" model="@sampleList.Where(x => x.Id != 8 && x.IsDisplayCard)" />
+
+<script>
+    var fileInputElement = document.getElementById('fileInputElement');
+
+    var documenteditor;
+    document.addEventListener('DOMContentLoaded', function () {
+        var documenteditorElement = document.getElementById("container");
+        var container = documenteditorElement.ej2_instances[0];
+        container.showPropertiesPane = true;
+        documenteditor = container.documentEditor;
+        documenteditorElement.ej2_instances[0].serviceUrl = window.baseurl + 'api/documenteditor/';
+        documenteditor.serviceUrl = window.baseurl + 'api/documenteditor/';
+        var ajax = new ej.base.Ajax("@Url.Content("~/sample-docx.json")", 'GET', true);
+        ajax.send().then();
+        ajax.onSuccess = function (data) {
+            documenteditor.open(data);
+            documenteditor.documentName = 'Getting Started';
+        };
+
+        document.getElementById('submitBtn').addEventListener('click', sendDocument);
+
+        function sendDocument(e) {
+            e.preventDefault();
+             container.documentEditor.saveAsBlob('Docx').then((blob) => {
+                let file = new File([blob], "test.docx",{type: blob.type, lastModified:new Date().getTime()});
+                let container = new DataTransfer();
+                container.items.add(file);
+                fileInputElement.files = container.files;
+                document.getElementById('form').submit();
+
+            }).catch(console.error);
+        }
+    });
+
+    $('[data-toggle=modal]').on('click', function (e) {
+        document.getElementsByClassName('global-spinner-loading')[0].classList.remove('bs_display_none');
+        document.getElementsByClassName('global-spinner-loading')[0].classList.add('bs_display_block');
+    });
+</script>
+
+<style>
+    .doc-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    #container .e-de-ctnr-toolbar {
+        visibility: hidden;
+    }
+</style>
